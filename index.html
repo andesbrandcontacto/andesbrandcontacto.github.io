@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andes Brand — Partner social</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --basalt: #14181b;
+    --slate: #1d242b;
+    --slate-2: #232b33;
+    --stone: #8d96a0;
+    --bone: #f2ede4;
+    --copper: #c8753f;
+    --copper-dim: #8f5631;
+    --glacier: #5fa39b;
+    --line: rgba(242,237,228,0.12);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--basalt);
+    color:var(--bone);
+    font-family:'Source Serif 4', serif;
+    font-size:17px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Schibsted Grotesk', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(to bottom, rgba(20,24,27,0.85), rgba(20,24,27,0));
+  }
+  .logo{
+    font-family:'Schibsted Grotesk', sans-serif;
+    font-weight:800;
+    font-size:19px;
+    letter-spacing:0.04em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .mark{color:var(--copper);}
+  .navlinks{display:flex; gap:34px; font-family:'Schibsted Grotesk',sans-serif; font-size:14.5px; font-weight:500; color:var(--stone);}
+  .navlinks a:hover{color:var(--bone);}
+  .navlinks{display:none;}
+  @media(min-width:860px){.navlinks{display:flex;}}
+  .btn{
+    font-family:'Schibsted Grotesk', sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    padding:11px 22px;
+    border-radius:3px;
+    display:inline-block;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .btn-primary{background:var(--copper); color:#1a1411;}
+  .btn-primary:hover{background:#d98750; transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line); color:var(--bone);}
+  .btn-ghost:hover{border-color:var(--bone);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding-top:140px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-svg{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+  .hero-content{position:relative; z-index:2; padding-bottom:96px;}
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--glacier);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--glacier);}
+  h1.hero-title{
+    font-size:clamp(40px, 7vw, 84px);
+    line-height:0.98;
+    max-width:920px;
+    color:var(--bone);
+  }
+  h1.hero-title em{
+    font-style:normal;
+    color:var(--copper);
+  }
+  .hero-sub{
+    max-width:480px;
+    color:var(--stone);
+    font-size:18px;
+    margin-top:26px;
+  }
+  .hero-cta{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .scroll-cue{
+    position:absolute; bottom:28px; right:32px; z-index:2;
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--stone);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:var(--line); position:relative; overflow:hidden;}
+  .scroll-cue .line::after{content:""; position:absolute; top:-100%; left:0; width:100%; height:100%; background:var(--copper); animation:drip 2.2s ease-in-out infinite;}
+  @keyframes drip{0%{top:-100%;} 60%{top:100%;} 100%{top:100%;}}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{position:relative; padding:120px 0;}
+  .section-head{max-width:620px; margin-bottom:64px;}
+  .section-head .eyebrow{color:var(--copper);}
+  .section-head .eyebrow::before{background:var(--copper);}
+  h2.section-title{font-size:clamp(30px,4vw,46px); color:var(--bone);}
+  .section-head p{color:var(--stone); margin-top:16px; font-size:17px; max-width:520px;}
+
+  /* ---------- INTRO STATS ---------- */
+  .intro{padding-top:90px;}
+  .intro-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:60px; align-items:start;}
+  @media(max-width:780px){.intro-grid{grid-template-columns:1fr;}}
+  .intro-lede{font-size:24px; color:var(--bone); max-width:520px; font-weight:400;}
+  .intro-lede strong{color:var(--copper); font-weight:500;}
+  .mini-stats{display:flex; flex-direction:column; gap:26px;}
+  .mini-stat{border-top:1px solid var(--line); padding-top:16px;}
+  .mini-stat .num{font-family:'JetBrains Mono',monospace; font-size:30px; color:var(--glacier); font-weight:500;}
+  .mini-stat .lbl{color:var(--stone); font-size:14px; margin-top:4px;}
+
+  /* ---------- RUTA (journey, ascending) ---------- */
+  .ruta{background:var(--slate); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .ruta-path{position:relative; padding-top:20px;}
+  .stage{
+    position:relative;
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:28px;
+    padding:38px 0;
+    border-top:1px solid var(--line);
+  }
+  .stage:last-child{padding-bottom:0;}
+  .stage .alt{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--glacier);
+    padding-top:4px;
+  }
+  .stage .alt .meters{display:block; font-size:22px; color:var(--bone); margin-top:4px;}
+  .stage h3{font-size:24px; color:var(--bone); margin-bottom:10px;}
+  .stage p{color:var(--stone); max-width:520px; font-size:16px;}
+  .stage-marker{
+    position:absolute; left:-1px; top:38px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--copper);
+    box-shadow:0 0 0 4px var(--slate), 0 0 0 5px var(--line);
+  }
+  @media(max-width:620px){.stage{grid-template-columns:1fr; gap:10px;}}
+
+  /* ---------- SERVICIOS ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media(max-width:860px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.services-grid{grid-template-columns:1fr;}}
+  .service{background:var(--basalt); padding:34px 28px; min-height:190px; display:flex; flex-direction:column; justify-content:space-between;}
+  .service .ico{width:30px; height:30px; color:var(--copper);}
+  .service h3{font-size:17.5px; font-family:'Schibsted Grotesk',sans-serif; font-weight:600; color:var(--bone); margin-top:22px;}
+  .service p{font-size:14.5px; color:var(--stone); margin-top:8px; font-family:'Source Serif 4',serif;}
+
+  /* ---------- PORTFOLIO / VIDEO ---------- */
+  .portfolio{background:var(--slate); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .portfolio-grid{display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center;}
+  @media(max-width:860px){.portfolio-grid{grid-template-columns:1fr; justify-items:center; text-align:left;}}
+  .phone-frame{
+    width:240px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:8px;
+    background:var(--basalt);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .phone-frame video{
+    width:100%;
+    aspect-ratio:9/16;
+    border-radius:16px;
+    object-fit:cover;
+    background:#000;
+  }
+  .video-placeholder{
+    width:240px;
+    aspect-ratio:9/16;
+    background:linear-gradient(135deg, #c8753f, #5fa39b);
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#f2ede4;
+    font-size:14px;
+    text-align:center;
+    padding:20px;
+    font-family:'JetBrains Mono',monospace;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- RESULTADOS BAND ---------- */
+  .resultados{background:var(--copper); color:#1a1310; border-bottom:1px solid var(--line);}
+  .resultados .section-head .eyebrow{color:#1a1310; opacity:0.65;}
+  .resultados .section-head .eyebrow::before{background:#1a1310; opacity:0.65;}
+  .resultados .section-head p{color:#3a2415;}
+  h2.resultados-title{color:#1a1310;}
+  .big-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
+  @media(max-width:760px){.big-stats{grid-template-columns:1fr; gap:34px;}}
+  .big-stat .num{font-family:'JetBrains Mono',monospace; font-size:clamp(40px,5vw,58px); font-weight:500; line-height:1;}
+  .big-stat .lbl{margin-top:10px; font-size:15px; color:#3a2415; max-width:240px;}
+
+  /* ---------- TESTIMONIO ---------- */
+  .testi{max-width:760px;}
+  .testi blockquote{
+    font-size:clamp(22px,3vw,30px);
+    font-style:italic;
+    color:var(--bone);
+    line-height:1.45;
+  }
+  .testi cite{
+    display:block; margin-top:26px; font-style:normal;
+    font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--glacier);
+  }
+
+  /* ---------- CTA FOOTER ---------- */
+  .cta-final{
+    background:var(--slate-2);
+    border-top:1px solid var(--line);
+    text-align:left;
+  }
+  .cta-grid{display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap;}
+  .cta-final h2{font-size:clamp(32px,5vw,56px); max-width:680px; color:var(--bone);}
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer .mono{color:var(--stone); font-size:12.5px;}
+  footer .flinks{display:flex; gap:24px; font-family:'Schibsted Grotesk',sans-serif; font-size:13.5px; color:var(--stone);}
+  footer .flinks a:hover{color:var(--bone);}
+
+  /* fade-in on scroll */
+  .fade-up{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .fade-up.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .fade-up{opacity:1; transform:none; transition:none;}
+    .scroll-cue .line::after{animation:none;}
+  }
+
+  ::selection{background:var(--copper); color:#1a1310;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="mark">▲</span>ANDES BRAND</div>
+  <div class="navlinks">
+    <a href="#servicios">Servicios</a>
+    <a href="#ruta">La ruta</a>
+    <a href="#portafolio">Trabajo</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="https://wa.me/56927078086?text=Hola%20Sebastián%2C%20quiero%20conocer%20más%20sobre%20producción%20y%20contenido%20digital%20para%20mi%20marca%2Fempresa." target="_blank" rel="noopener" class="btn btn-primary">Agendar llamada</a>
+</nav>
+
+<header class="hero">
+  <svg class="hero-svg" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#14181b" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#14181b" stop-opacity="1"/>
+      </linearGradient>
+    </defs>
+    <path d="M-50,620 C 150,520 300,640 480,560 C 660,480 780,580 980,500 C 1150,430 1300,520 1450,470 L1450,900 L-50,900 Z" fill="none" stroke="#2a333c" stroke-width="1.5"/>
+    <path d="M-50,680 C 180,600 330,700 520,630 C 700,560 820,650 1020,580 C 1180,520 1320,600 1450,560 L1450,900 L-50,900 Z" fill="none" stroke="#323d47" stroke-width="1.5"/>
+    <path d="M-50,740 C 200,680 360,760 540,700 C 720,640 850,720 1040,660 C 1200,610 1340,680 1450,650 L1450,900 L-50,900 Z" fill="none" stroke="#3a4651" stroke-width="1.5"/>
+    <path d="M-50,800 C 220,760 380,820 560,770 C 740,720 870,790 1060,740 C 1220,700 1350,760 1450,740 L1450,900 L-50,900 Z" fill="#1d242b" stroke="#46535f" stroke-width="1.5"/>
+    <path d="M620,560 L660,480 L700,560 Z" fill="none" stroke="#c8753f" stroke-width="1.5" opacity="0.8"/>
+    <rect x="0" y="0" width="1400" height="900" fill="url(#fade)"/>
+  </svg>
+
+  <div class="wrap hero-content">
+    <div class="eyebrow">Partner social, desde Sudamérica</div>
+    <h1 class="hero-title">Llevamos tu marca<br>a la <em>altura</em> que merece.</h1>
+    <p class="hero-sub">Somos el equipo de social media que se mete en la cordillera contigo: diagnóstico, estrategia, contenido y pauta, paso a paso, hasta la cumbre.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/56927078086?text=Hola%20Sebastián%2C%20quiero%20conocer%20más%20sobre%20producción%20y%20contenido%20digital%20para%20mi%20marca%2Fempresa." target="_blank" rel="noopener" class="btn btn-primary">Agendar una llamada</a>
+      <a href="#ruta" class="btn btn-ghost">Ver cómo trabajamos</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>0m</span>
+    <span class="line"></span>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <p class="intro-lede fade-up">No vendemos publicaciones. Construimos la <strong>ruta de ascenso</strong> de tu marca en redes: del primer post a una comunidad que vuelve sola.</p>
+    <div class="mini-stats fade-up">
+      <div class="mini-stat">
+        <div class="num">+48%</div>
+        <div class="lbl">Crecimiento promedio de engagement en 6 meses</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ruta" id="ruta">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Cómo trabajamos</div>
+      <h2 class="section-title">La ruta de ascenso</h2>
+      <p>Tres tramos, cada uno con su propia altura y su propio desafío. Subimos contigo, no solo te mostramos el mapa.</p>
+    </div>
+
+    <div class="ruta-path">
+      <div class="stage fade-up">
+        <div class="alt">BASECAMPO<span class="meters">0 m</span></div>
+        <div>
+          <div class="stage-marker"></div>
+          <h3>Diagnóstico</h3>
+          <p>Revisamos tu marca tal como está hoy: audiencia, competencia, qué funciona y qué te está frenando. Sin esto, cualquier estrategia es solo ruido.</p>
+        </div>
+      </div>
+      <div class="stage fade-up">
+        <div class="alt">ASCENSO<span class="meters">2.400 m</span></div>
+        <div>
+          <div class="stage-marker"></div>
+          <h3>Estrategia y contenido</h3>
+          <p>Definimos el tono, el calendario y las piezas que vamos a producir. Cada publicación responde a un objetivo, no a llenar un casillero.</p>
+        </div>
+      </div>
+      <div class="stage fade-up">
+        <div class="alt">CUMBRE<span class="meters">6.000 m</span></div>
+        <div>
+          <div class="stage-marker"></div>
+          <h3>Resultados y escala</h3>
+          <p>Medimos lo que importa: comunidad real, conversaciones y ventas atribuibles. Ajustamos la ruta cada mes según lo que el terreno nos muestra.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Servicios</div>
+      <h2 class="section-title">Todo lo que necesita tu cordillera digital</h2>
+      <p>Seis frentes de trabajo, contratados juntos o por separado según dónde esté parada tu marca.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="services-grid fade-up">
+      <div class="service">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 18l5-9 4 6 3-4 6 7"/></svg>
+        <div>
+          <h3>Gestión de redes</h3>
+          <p>Operación diaria de tus canales, de la publicación a la respuesta a tu comunidad.</p>
+        </div>
+      </div>
+      <div class="service">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 14h16M10 4v16"/></svg>
+        <div>
+          <h3>Producción de contenido</h3>
+          <p>Foto, video y diseño pensados para cómo se consume cada plataforma.</p>
+        </div>
+      </div>
+      <div class="service">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="8"/></svg>
+        <div>
+          <h3>Pauta digital</h3>
+          <p>Campañas pagadas con presupuesto cuidado y métricas claras, no vanidad.</p>
+        </div>
+      </div>
+      <div class="service">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="16" r="3"/><path d="M10.5 9.5l4 5"/></svg>
+        <div>
+          <h3>Comunidad</h3>
+          <p>Moderación y conversación real con quienes ya siguen tu marca.</p>
+        </div>
+      </div>
+      <div class="service">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+        <div>
+          <h3>Analítica</h3>
+          <p>Reportes mensuales que explican el por qué detrás de cada número.</p>
+        </div>
+      </div>
+      <div class="service">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        <div>
+          <h3>Identidad de marca</h3>
+          <p>Ajustes de tono y estética para que tu marca se reconozca en cualquier formato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="portafolio">
+  <div class="wrap portfolio-grid">
+    <div class="section-head fade-up" style="margin-bottom:0;">
+      <div class="eyebrow">Trabajo real</div>
+      <h2 class="section-title">Así se ve el contenido en terreno</h2>
+      <p>Una pieza de video producida para marca: del concierto creativo a la edición final, lista para redes.</p>
+      <a href="https://wa.me/56927078086?text=Hola%20Sebastián%2C%20quiero%20conocer%20más%20sobre%20producción%20y%20contenido%20digital%20para%20mi%20marca%2Fempresa." target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:8px;">Quiero algo así para mi marca</a>
+    </div>
+    <div class="phone-frame fade-up">
+      <div class="video-placeholder">Video de ejemplo próximamente</div>
+    </div>
+  </div>
+</section>
+
+<section class="resultados" id="resultados">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Resultados</div>
+      <h2 class="section-title resultados-title">Números que se sienten en terreno</h2>
+      <p>No medimos likes. Medimos lo que mueve a tu negocio.</p>
+    </div>
+    <div class="big-stats fade-up">
+      <div class="big-stat">
+        <div class="num">3.2x</div>
+        <div class="lbl">Aumento promedio en alcance orgánico durante el primer trimestre</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contacto">
+  <div class="wrap">
+    <div class="cta-grid fade-up">
+      <h2>¿Listos para empezar el ascenso de tu marca?</h2>
+      <a href="mailto:contactoandesbrand@gmail.com" class="btn btn-primary">Escribir a contactoandesbrand@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; width:100%;">
+    <span class="mono">© 2026 ANDES BRAND — PARTNER SOCIAL</span>
+    <div class="flinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#ruta">La ruta</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.fade-up');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  items.forEach(i=>io.observe(i));
+</script>
+
+</body>
+</html>
