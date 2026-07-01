@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andes Brand — Partner social</title>
+<title>Andes Brand — Partner Social</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -15,13 +15,11 @@
   }
 
   :root {
-    --primary: #000000;
-    --secondary: #ffffff;
-    --accent: #1a1a1a;
-    --light: #f8f8f8;
-    --gray: #e0e0e0;
-    --dark-gray: #555555;
-    --text: #1a1a1a;
+    --primary-dark: #0a0e27;
+    --secondary-dark: #1a1f3a;
+    --accent: #ffffff;
+    --gold: #d4af37;
+    --dark-gray: #e0e0e0;
   }
 
   html {
@@ -29,12 +27,13 @@
   }
 
   body {
-    background: var(--secondary);
-    color: var(--text);
+    background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+    color: var(--accent);
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -49,6 +48,50 @@
     transition: all 0.3s ease;
   }
 
+  /* ========== STARS BACKGROUND ========== */
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle 3s infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ========== SNOW ========== */
+  .snowflake {
+    position: fixed;
+    top: -10vh;
+    z-index: 50;
+    user-select: none;
+    cursor: default;
+    animation: snowfall linear infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  @keyframes snowfall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+    }
+  }
+
   /* ========== NAVIGATION ========== */
   nav {
     position: fixed;
@@ -60,9 +103,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--gray);
+    background: rgba(10, 14, 39, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-logo {
@@ -70,6 +113,15 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
   }
 
   .nav-links {
@@ -83,12 +135,12 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--dark-gray);
+    color: rgba(255, 255, 255, 0.7);
     position: relative;
   }
 
   .nav-links a:hover {
-    color: var(--primary);
+    color: var(--gold);
   }
 
   .nav-links a::after {
@@ -98,7 +150,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--primary);
+    background: var(--gold);
     transition: width 0.3s ease;
   }
 
@@ -107,8 +159,8 @@
   }
 
   .nav-cta {
-    background: var(--primary);
-    color: var(--secondary);
+    background: var(--gold);
+    color: var(--primary-dark);
     padding: 12px 32px;
     border-radius: 50px;
     font-size: 14px;
@@ -120,7 +172,7 @@
 
   .nav-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
   }
 
   @media (max-width: 768px) {
@@ -132,41 +184,53 @@
     }
   }
 
-  /* ========== HERO ========== */
-  .hero {
-    margin-top: 100px;
+  /* ========== PARALLAX BACKGROUND ========== */
+  .parallax-container {
+    position: relative;
+    height: 400vh;
+    overflow: hidden;
+  }
+
+  .mountain-layer {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+  }
+
+  .mountain-back {
+    background: linear-gradient(180deg, #0a0e27 0%, #1a2a4a 100%);
+    filter: blur(0px);
+  }
+
+  .mountain-mid {
+    background: radial-gradient(ellipse at 50% 100%, rgba(30, 50, 80, 0.6), transparent 70%);
+    clip-path: polygon(0 60%, 15% 55%, 30% 65%, 50% 45%, 70% 60%, 85% 50%, 100% 70%, 100% 100%, 0 100%);
+  }
+
+  .mountain-front {
+    background: radial-gradient(ellipse at 50% 100%, rgba(50, 80, 120, 0.8), transparent 70%);
+    clip-path: polygon(0 70%, 20% 65%, 40% 75%, 60% 55%, 80% 70%, 100% 65%, 100% 100%, 0 100%);
+  }
+
+  .content {
+    position: relative;
+    z-index: 20;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--light) 100%);
-    position: relative;
-    overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: float 15s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(30px); }
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
+  /* ========== HERO ========== */
+  .hero {
     text-align: center;
     padding: 0 40px;
+    margin-top: 100px;
   }
 
   .hero-tag {
@@ -176,20 +240,26 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 50px;
     margin-bottom: 30px;
+    color: var(--gold);
   }
 
   h1 {
     font-size: clamp(48px, 8vw, 72px);
     margin-bottom: 24px;
     line-height: 1.1;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .hero-subtitle {
     font-size: 20px;
-    color: var(--dark-gray);
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 40px;
     max-width: 600px;
     margin-left: auto;
@@ -219,34 +289,36 @@
   }
 
   .btn-primary {
-    background: var(--primary);
-    color: var(--secondary);
+    background: var(--gold);
+    color: var(--primary-dark);
   }
 
   .btn-primary:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
   }
 
   .btn-secondary {
     background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
+    color: var(--accent);
+    border: 2px solid var(--gold);
   }
 
   .btn-secondary:hover {
-    background: var(--primary);
-    color: var(--secondary);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
   }
 
   /* ========== SECTION ========== */
   section {
     padding: 120px 60px;
     position: relative;
+    z-index: 25;
   }
 
   .section-header {
     margin-bottom: 80px;
+    text-align: left;
   }
 
   .section-tag {
@@ -256,7 +328,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 16px;
-    color: var(--dark-gray);
+    color: var(--gold);
   }
 
   .section-title {
@@ -266,16 +338,12 @@
 
   .section-subtitle {
     font-size: 18px;
-    color: var(--dark-gray);
+    color: rgba(255, 255, 255, 0.6);
     max-width: 600px;
     font-weight: 300;
   }
 
   /* ========== PORTFOLIO CAROUSEL ========== */
-  .portfolio-section {
-    background: var(--light);
-  }
-
   .carousel-container {
     position: relative;
     margin-top: 60px;
@@ -296,12 +364,12 @@
   }
 
   .carousel::-webkit-scrollbar-track {
-    background: var(--gray);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
   }
 
   .carousel::-webkit-scrollbar-thumb {
-    background: var(--primary);
+    background: var(--gold);
     border-radius: 10px;
   }
 
@@ -309,13 +377,13 @@
     flex: 0 0 320px;
     scroll-snap-align: start;
     perspective: 1000px;
-    animation: slideIn 0.6s ease-out forwards;
+    animation: slideIn 0.8s ease-out forwards;
   }
 
   @keyframes slideIn {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
     to {
       opacity: 1;
@@ -330,8 +398,9 @@
     background: #000;
     border-radius: 40px;
     padding: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 80px rgba(212, 175, 55, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.2);
   }
 
   .phone-notch {
@@ -368,8 +437,8 @@
     bottom: 20px;
     left: 20px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: var(--secondary);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--accent);
     padding: 12px 16px;
     border-radius: 8px;
     font-size: 14px;
@@ -377,6 +446,7 @@
     text-align: center;
     z-index: 20;
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
   }
 
   .carousel-controls {
@@ -390,27 +460,24 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 2px solid var(--gray);
+    border: 2px solid rgba(212, 175, 55, 0.3);
     background: transparent;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    color: var(--gold);
     transition: all 0.3s ease;
   }
 
   .carousel-btn:hover {
-    border-color: var(--primary);
-    background: var(--primary);
-    color: var(--secondary);
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
   }
 
   /* ========== SERVICIOS ========== */
-  .services {
-    background: var(--secondary);
-  }
-
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -420,8 +487,8 @@
 
   .service-card {
     padding: 40px;
-    background: linear-gradient(135deg, var(--light) 0%, var(--secondary) 100%);
-    border: 1px solid var(--gray);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 16px;
     transition: all 0.4s ease;
     position: relative;
@@ -435,7 +502,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--gold), transparent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
@@ -443,8 +510,9 @@
 
   .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary);
+    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
   }
 
   .service-card:hover::before {
@@ -454,7 +522,8 @@
   .service-icon {
     width: 50px;
     height: 50px;
-    background: var(--primary);
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gold);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -470,15 +539,18 @@
 
   .service-card p {
     font-size: 14px;
-    color: var(--dark-gray);
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.8;
   }
 
   /* ========== STATS ========== */
   .stats-section {
-    background: var(--primary);
-    color: var(--secondary);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
     text-align: center;
+    padding: 80px 60px;
+    margin: 80px 60px;
   }
 
   .stats-grid {
@@ -491,20 +563,23 @@
   .stat-item h3 {
     font-size: clamp(40px, 8vw, 64px);
     margin-bottom: 8px;
-    color: var(--secondary);
+    color: var(--gold);
   }
 
   .stat-item p {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 300;
   }
 
   /* ========== CTA ========== */
   .cta-section {
-    background: var(--light);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
     text-align: center;
     padding: 120px 60px;
+    margin: 80px 60px;
   }
 
   .cta-section h2 {
@@ -514,17 +589,20 @@
 
   /* ========== FOOTER ========== */
   footer {
-    background: var(--primary);
-    color: var(--secondary);
+    background: rgba(10, 14, 39, 0.95);
+    color: var(--accent);
     padding: 60px;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    z-index: 30;
   }
 
   footer p {
     font-size: 14px;
     font-weight: 300;
     margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .footer-links {
@@ -545,6 +623,7 @@
 
   .footer-links a:hover {
     opacity: 1;
+    color: var(--gold);
   }
 
   /* ========== ANIMATIONS ========== */
@@ -582,38 +661,58 @@
     .services-grid {
       grid-template-columns: 1fr;
     }
+
+    .stats-section {
+      margin: 60px 30px;
+      padding: 60px 30px;
+    }
+
+    .cta-section {
+      margin: 60px 30px;
+      padding: 60px 30px;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-  <div class="nav-logo">▲ ANDES</div>
-  <ul class="nav-links">
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#portafolio">Portafolio</a></li>
-    <li><a href="#resultados">Resultados</a></li>
-  </ul>
-  <a href="https://wa.me/56927078086" target="_blank" class="nav-cta">Contactar</a>
-</nav>
+<!-- STARS -->
+<div class="stars" id="starsContainer"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-tag">Partner Digital desde Sudamérica</div>
-    <h1>Llevamos tu marca<br>a la altura que merece</h1>
-    <p class="hero-subtitle">Estrategia, contenido y pauta digital que trasciende. Subimos contigo, paso a paso, hasta la cumbre.</p>
-    <div class="hero-cta">
-      <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Agendar llamada</a>
-      <a href="#portafolio" class="btn btn-secondary">Ver nuestro trabajo</a>
+<!-- PARALLAX BACKGROUND -->
+<div class="parallax-container">
+  <div class="mountain-layer mountain-back" id="mountainBack"></div>
+  <div class="mountain-layer mountain-mid" id="mountainMid"></div>
+  <div class="mountain-layer mountain-front" id="mountainFront"></div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-logo">▲ ANDES</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+    </ul>
+    <a href="https://wa.me/56927078086" target="_blank" class="nav-cta">Contactar</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="content hero">
+    <div>
+      <div class="hero-tag">Partner Digital desde Sudamérica</div>
+      <h1>Llevamos tu marca<br>a la altura que merece</h1>
+      <p class="hero-subtitle">Estrategia, contenido y pauta digital que trasciende. Subimos contigo, paso a paso, hasta la cumbre.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Agendar llamada</a>
+        <a href="#portafolio" class="btn btn-secondary">Ver nuestro trabajo</a>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- PORTFOLIO / CAROUSEL -->
-<section class="portfolio-section" id="portafolio">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px;">
+<section id="portafolio">
+  <div style="max-width: 1200px; margin: 0 auto;">
     <div class="section-header">
       <div class="section-tag">Trabajo Real</div>
       <h2 class="section-title">Contenido que se siente en redes</h2>
@@ -653,7 +752,7 @@
 
 <!-- SERVICIOS -->
 <section id="servicios">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px;">
+  <div style="max-width: 1200px; margin: 0 auto;">
     <div class="section-header">
       <div class="section-tag">Servicios</div>
       <h2 class="section-title">Seis frentes de trabajo integral</h2>
@@ -700,34 +799,40 @@
 </section>
 
 <!-- STATS -->
-<section class="stats-section" id="resultados">
-  <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px;">
-    <div class="section-header" style="margin-bottom: 60px;">
-      <div class="section-tag" style="color: rgba(255,255,255,0.8);">Resultados Reales</div>
-      <h2 class="section-title" style="color: var(--secondary);">Números que se sienten en redes</h2>
-    </div>
+<section id="resultados">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="stats-section">
+      <div class="section-header">
+        <div class="section-tag">Resultados Reales</div>
+        <h2 class="section-title">Números que se sienten en redes</h2>
+      </div>
 
-    <div class="stats-grid">
-      <div class="stat-item">
-        <h3>3.2x</h3>
-        <p>Aumento de alcance en 3 meses</p>
-      </div>
-      <div class="stat-item">
-        <h3>+48%</h3>
-        <p>Crecimiento de engagement</p>
-      </div>
-      <div class="stat-item">
-        <h3>85%</h3>
-        <p>Retención de clientes</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>3.2x</h3>
+          <p>Aumento de alcance en 3 meses</p>
+        </div>
+        <div class="stat-item">
+          <h3>+48%</h3>
+          <p>Crecimiento de engagement</p>
+        </div>
+        <div class="stat-item">
+          <h3>85%</h3>
+          <p>Retención de clientes</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
-  <h2>¿Listo para subir de altura?</h2>
-  <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Comenzar ahora</a>
+<section>
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="cta-section">
+      <h2>¿Listo para subir de altura?</h2>
+      <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Comenzar ahora</a>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -741,7 +846,48 @@
 </footer>
 
 <script>
-  // Carousel functionality
+  // CREATE STARS
+  function createStars() {
+    const starsContainer = document.getElementById('starsContainer');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      starsContainer.appendChild(star);
+    }
+  }
+
+  // CREATE SNOW
+  function createSnow() {
+    setInterval(() => {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.textContent = '❄';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => snowflake.remove(), 20000);
+    }, 300);
+  }
+
+  // PARALLAX EFFECT
+  function handleParallax() {
+    const scrolled = window.pageYOffset;
+    const mountainBack = document.getElementById('mountainBack');
+    const mountainMid = document.getElementById('mountainMid');
+    const mountainFront = document.getElementById('mountainFront');
+
+    mountainBack.style.transform = `translateY(${scrolled * 0.3}px)`;
+    mountainMid.style.transform = `translateY(${scrolled * 0.5}px)`;
+    mountainFront.style.transform = `translateY(${scrolled * 0.7}px)`;
+  }
+
+  // CAROUSEL FUNCTIONALITY
   function scrollCarousel(direction) {
     const carousel = document.getElementById('videoCarousel');
     const scrollAmount = 350;
@@ -751,15 +897,16 @@
     });
   }
 
-  // Fade in animation on scroll
+  // FADE IN ANIMATION ON SCROLL
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
+        entry.target.style.animationDelay = (index * 0.1) + 's';
         entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
         observer.unobserve(entry.target);
       }
@@ -768,11 +915,18 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // Keyboard navigation
+  // KEYBOARD NAVIGATION
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') scrollCarousel(-1);
     if (e.key === 'ArrowRight') scrollCarousel(1);
   });
+
+  // PARALLAX ON SCROLL
+  window.addEventListener('scroll', handleParallax);
+
+  // INIT
+  createStars();
+  createSnow();
 </script>
 
 </body>
