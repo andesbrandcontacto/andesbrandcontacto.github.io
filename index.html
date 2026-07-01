@@ -199,27 +199,16 @@
     background:var(--basalt);
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
   }
-  .phone-frame video{
-    width:100%;
-    aspect-ratio:9/16;
-    border-radius:16px;
-    object-fit:cover;
-    background:#000;
-  }
-  .video-placeholder{
+  .video-container{
     width:240px;
     aspect-ratio:9/16;
-    background:linear-gradient(135deg, #c8753f, #5fa39b);
     border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#f2ede4;
-    font-size:14px;
-    text-align:center;
-    padding:20px;
-    font-family:'JetBrains Mono',monospace;
-    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .video-container iframe{
+    width:100%;
+    height:100%;
+    border:none;
   }
 
   /* ---------- RESULTADOS BAND ---------- */
@@ -432,11 +421,13 @@
     <div class="section-head fade-up" style="margin-bottom:0;">
       <div class="eyebrow">Trabajo real</div>
       <h2 class="section-title">Así se ve el contenido en terreno</h2>
-      <p>Una pieza de video producida para marca: del concierto creativo a la edición final, lista para redes.</p>
+      <p>Campaña de video producida para Aguas Claras: estrategia, producción y edición para redes.</p>
       <a href="https://wa.me/56927078086?text=Hola%20Sebastián%2C%20quiero%20conocer%20más%20sobre%20producción%20y%20contenido%20digital%20para%20mi%20marca%2Fempresa." target="_blank" rel="noopener" class="btn btn-ghost" style="margin-top:8px;">Quiero algo así para mi marca</a>
     </div>
     <div class="phone-frame fade-up">
-      <div class="video-placeholder">Video de ejemplo próximamente</div>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/u-RxOkHaiy4?rel=0&modestbranding=1" allowfullscreen="" loading="lazy" title="Aguas Claras - Reel de contenido"></iframe>
+      </div>
     </div>
   </div>
 </section>
