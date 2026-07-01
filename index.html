@@ -17,6 +17,7 @@
   :root {
     --primary-dark: #0a0e27;
     --secondary-dark: #1a1f3a;
+    --tertiary-dark: #252d4a;
     --accent: #ffffff;
     --gold: #d4af37;
     --dark-gray: #e0e0e0;
@@ -113,15 +114,6 @@
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .nav-logo img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
   }
 
   .nav-links {
@@ -184,52 +176,61 @@
     }
   }
 
-  /* ========== PARALLAX BACKGROUND ========== */
-  .parallax-container {
+  /* ========== PARALLAX LAYERS ========== */
+  .parallax-wrapper {
     position: relative;
-    height: 400vh;
+    height: 100vh;
     overflow: hidden;
   }
 
-  .mountain-layer {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
+  .parallax-bg {
+    position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 10;
+    background-attachment: fixed;
+    z-index: 5;
   }
 
-  .mountain-back {
-    background: linear-gradient(180deg, #0a0e27 0%, #1a2a4a 100%);
-    filter: blur(0px);
-  }
-
-  .mountain-mid {
-    background: radial-gradient(ellipse at 50% 100%, rgba(30, 50, 80, 0.6), transparent 70%);
-    clip-path: polygon(0 60%, 15% 55%, 30% 65%, 50% 45%, 70% 60%, 85% 50%, 100% 70%, 100% 100%, 0 100%);
-  }
-
-  .mountain-front {
-    background: radial-gradient(ellipse at 50% 100%, rgba(50, 80, 120, 0.8), transparent 70%);
-    clip-path: polygon(0 70%, 20% 65%, 40% 75%, 60% 55%, 80% 70%, 100% 65%, 100% 100%, 0 100%);
-  }
-
-  .content {
+  /* ========== FULL SCREEN SECTIONS ========== */
+  .full-section {
     position: relative;
-    z-index: 20;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    z-index: 20;
+  }
+
+  .full-section.dark {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
+  }
+
+  .section-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 60px;
+    animation: slideInUp 1s ease-out;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* ========== HERO ========== */
   .hero {
     text-align: center;
-    padding: 0 40px;
     margin-top: 100px;
   }
 
@@ -245,6 +246,7 @@
     border-radius: 50px;
     margin-bottom: 30px;
     color: var(--gold);
+    animation: fadeIn 0.8s ease-out 0.2s both;
   }
 
   h1 {
@@ -255,6 +257,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: fadeIn 0.8s ease-out 0.4s both;
   }
 
   .hero-subtitle {
@@ -266,6 +269,7 @@
     margin-right: auto;
     font-weight: 300;
     line-height: 1.8;
+    animation: fadeIn 0.8s ease-out 0.6s both;
   }
 
   .hero-cta {
@@ -273,6 +277,18 @@
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeIn 0.8s ease-out 0.8s both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .btn {
@@ -309,16 +325,10 @@
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
   }
 
-  /* ========== SECTION ========== */
-  section {
-    padding: 120px 60px;
-    position: relative;
-    z-index: 25;
-  }
-
+  /* ========== SECTION HEADERS ========== */
   .section-header {
+    text-align: center;
     margin-bottom: 80px;
-    text-align: left;
   }
 
   .section-tag {
@@ -341,46 +351,30 @@
     color: rgba(255, 255, 255, 0.6);
     max-width: 600px;
     font-weight: 300;
+    margin: 0 auto;
   }
 
-  /* ========== PORTFOLIO CAROUSEL ========== */
-  .carousel-container {
+  /* ========== VIDEO SHOWCASE ========== */
+  .video-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 80px;
+  }
+
+  .video-card {
     position: relative;
-    margin-top: 60px;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 16/9;
+    background: #000;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    animation: slideInCard 0.8s ease-out both;
   }
 
-  .carousel {
-    display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .carousel::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .carousel::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-
-  .carousel::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-  }
-
-  .carousel-item {
-    flex: 0 0 320px;
-    scroll-snap-align: start;
-    perspective: 1000px;
-    animation: slideIn 0.8s ease-out forwards;
-  }
-
-  @keyframes slideIn {
+  @keyframes slideInCard {
     from {
       opacity: 0;
       transform: translateY(40px);
@@ -391,42 +385,17 @@
     }
   }
 
-  .phone-mockup {
-    position: relative;
-    width: 320px;
-    height: 640px;
-    background: #000;
-    border-radius: 40px;
-    padding: 12px;
-    box-shadow: 0 30px 80px rgba(212, 175, 55, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+  .video-card:nth-child(2) {
+    animation-delay: 0.2s;
   }
 
-  .phone-notch {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 180px;
-    height: 28px;
-    background: #000;
-    border-radius: 0 0 30px 30px;
-    z-index: 10;
+  .video-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 30px 80px rgba(212, 175, 55, 0.3);
   }
 
-  .phone-screen {
-    width: 100%;
-    height: 100%;
-    background: #000;
-    border-radius: 35px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .phone-screen iframe {
+  .video-card iframe {
     width: 100%;
     height: 100%;
     border: none;
@@ -443,38 +412,54 @@
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
-    text-align: center;
-    z-index: 20;
+    z-index: 10;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(212, 175, 55, 0.2);
   }
 
-  .carousel-controls {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 40px;
+  /* ========== IMAGE GALLERY ========== */
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 80px;
   }
 
-  .carousel-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px solid rgba(212, 175, 55, 0.3);
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: var(--gold);
-    transition: all 0.3s ease;
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    animation: slideInCard 0.8s ease-out both;
   }
 
-  .carousel-btn:hover {
+  .gallery-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .gallery-item:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
     border-color: var(--gold);
-    background: rgba(212, 175, 55, 0.1);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 30px 80px rgba(212, 175, 55, 0.3);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
   }
 
   /* ========== SERVICIOS ========== */
@@ -493,6 +478,11 @@
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    animation: slideInCard 0.8s ease-out both;
+  }
+
+  .service-card:nth-child(n+2) {
+    animation-delay: calc(0.1s * var(--card-index, 1));
   }
 
   .service-card::before {
@@ -544,13 +534,11 @@
   }
 
   /* ========== STATS ========== */
-  .stats-section {
+  .stats-container {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
-    text-align: center;
     padding: 80px 60px;
-    margin: 80px 60px;
   }
 
   .stats-grid {
@@ -573,16 +561,15 @@
   }
 
   /* ========== CTA ========== */
-  .cta-section {
+  .cta-container {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
-    text-align: center;
     padding: 120px 60px;
-    margin: 80px 60px;
+    text-align: center;
   }
 
-  .cta-section h2 {
+  .cta-container h2 {
     font-size: clamp(36px, 5vw, 56px);
     margin-bottom: 40px;
   }
@@ -626,49 +613,28 @@
     color: var(--gold);
   }
 
-  /* ========== ANIMATIONS ========== */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   @media (max-width: 768px) {
-    section {
-      padding: 80px 30px;
+    .section-content {
+      padding: 0 30px;
     }
 
-    nav {
-      padding: 16px 20px;
+    .video-showcase {
+      grid-template-columns: 1fr;
     }
 
-    .carousel-item {
-      flex: 0 0 280px;
-    }
-
-    .phone-mockup {
-      width: 280px;
-      height: 560px;
+    .image-gallery {
+      grid-template-columns: 1fr;
     }
 
     .services-grid {
       grid-template-columns: 1fr;
     }
 
-    .stats-section {
-      margin: 60px 30px;
+    .stats-container {
       padding: 60px 30px;
     }
 
-    .cta-section {
-      margin: 60px 30px;
+    .cta-container {
       padding: 60px 30px;
     }
   }
@@ -679,117 +645,118 @@
 <!-- STARS -->
 <div class="stars" id="starsContainer"></div>
 
-<!-- PARALLAX BACKGROUND -->
-<div class="parallax-container">
-  <div class="mountain-layer mountain-back" id="mountainBack"></div>
-  <div class="mountain-layer mountain-mid" id="mountainMid"></div>
-  <div class="mountain-layer mountain-front" id="mountainFront"></div>
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">▲ ANDES</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portafolio">Portafolio</a></li>
+    <li><a href="#resultados">Resultados</a></li>
+  </ul>
+  <a href="https://wa.me/56927078086" target="_blank" class="nav-cta">Contactar</a>
+</nav>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-logo">▲ ANDES</div>
-    <ul class="nav-links">
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#portafolio">Portafolio</a></li>
-      <li><a href="#resultados">Resultados</a></li>
-    </ul>
-    <a href="https://wa.me/56927078086" target="_blank" class="nav-cta">Contactar</a>
-  </nav>
-
-  <!-- HERO -->
-  <div class="content hero">
-    <div>
-      <div class="hero-tag">Partner Digital desde Sudamérica</div>
-      <h1>Llevamos tu marca<br>a la altura que merece</h1>
-      <p class="hero-subtitle">Estrategia, contenido y pauta digital que trasciende. Subimos contigo, paso a paso, hasta la cumbre.</p>
-      <div class="hero-cta">
-        <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Agendar llamada</a>
-        <a href="#portafolio" class="btn btn-secondary">Ver nuestro trabajo</a>
-      </div>
+<!-- HERO SECTION -->
+<section class="full-section dark">
+  <div class="section-content hero">
+    <div class="hero-tag">Partner Digital desde Sudamérica</div>
+    <h1>Llevamos tu marca<br>a la altura que merece</h1>
+    <p class="hero-subtitle">Estrategia, contenido y pauta digital que trasciende. Subimos contigo, paso a paso, hasta la cumbre.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Agendar llamada</a>
+      <a href="#portafolio" class="btn btn-secondary">Ver nuestro trabajo</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- PORTFOLIO / CAROUSEL -->
-<section id="portafolio">
-  <div style="max-width: 1200px; margin: 0 auto;">
+<!-- PORTFOLIO SECTION -->
+<section class="full-section dark" id="portafolio">
+  <div class="section-content">
     <div class="section-header">
       <div class="section-tag">Trabajo Real</div>
       <h2 class="section-title">Contenido que se siente en redes</h2>
       <p class="section-subtitle">Campañas de video producidas con estrategia, creatividad y precisión. Cada frame cuenta.</p>
     </div>
 
-    <div class="carousel-container">
-      <div class="carousel" id="videoCarousel">
-        <div class="carousel-item">
-          <div class="phone-mockup">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <iframe src="https://www.youtube.com/embed/u-RxOkHaiy4?rel=0&controls=0&modestbranding=1" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="video-label">Aguas Claras</div>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="phone-mockup">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <iframe src="https://www.youtube.com/embed/ChmoCxMZRiE?rel=0&controls=0&modestbranding=1" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <div class="video-label">Contenido Digital</div>
-          </div>
-        </div>
+    <div class="video-showcase">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/u-RxOkHaiy4?rel=0&controls=0&modestbranding=1" allowfullscreen="" loading="lazy"></iframe>
+        <div class="video-label">Aguas Claras</div>
       </div>
 
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="scrollCarousel(-1)">❮</button>
-        <button class="carousel-btn" onclick="scrollCarousel(1)">❯</button>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/ChmoCxMZRiE?rel=0&controls=0&modestbranding=1" allowfullscreen="" loading="lazy"></iframe>
+        <div class="video-label">Contenido Digital</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS -->
-<section id="servicios">
-  <div style="max-width: 1200px; margin: 0 auto;">
+<!-- GALLERY SECTION -->
+<section class="full-section dark">
+  <div class="section-content">
+    <div class="section-header">
+      <div class="section-tag">La Altura</div>
+      <h2 class="section-title">En la cordillera con estrategia</h2>
+      <p class="section-subtitle">Donde la creatividad encuentra la montaña. Cada proyecto es una ascensión.</p>
+    </div>
+
+    <div class="image-gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=800&fit=crop" alt="Cumbre con bandera roja">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1551632786-9c037cb4f32a?w=800&h=800&fit=crop" alt="Gafas de esquí en montaña">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=800&fit=crop" alt="Escalador en las alturas">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS SECTION -->
+<section class="full-section dark" id="servicios">
+  <div class="section-content">
     <div class="section-header">
       <div class="section-tag">Servicios</div>
       <h2 class="section-title">Seis frentes de trabajo integral</h2>
     </div>
 
     <div class="services-grid">
-      <div class="service-card fade-in">
+      <div class="service-card" style="--card-index: 1;">
         <div class="service-icon">📊</div>
         <h3>Gestión de Redes</h3>
         <p>Operación diaria de tus canales, desde publicaciones hasta respuesta comunitaria en tiempo real.</p>
       </div>
 
-      <div class="service-card fade-in">
+      <div class="service-card" style="--card-index: 2;">
         <div class="service-icon">🎬</div>
         <h3>Producción de Video</h3>
         <p>Contenido visual que atrae. Foto, video y diseño pensados para cada plataforma.</p>
       </div>
 
-      <div class="service-card fade-in">
+      <div class="service-card" style="--card-index: 3;">
         <div class="service-icon">🎯</div>
         <h3>Pauta Digital</h3>
         <p>Campañas pagadas con presupuesto inteligente y métricas claras, no vanidad.</p>
       </div>
 
-      <div class="service-card fade-in">
+      <div class="service-card" style="--card-index: 4;">
         <div class="service-icon">👥</div>
         <h3>Comunidad</h3>
         <p>Construcción de relaciones reales con quienes ya creen en tu marca.</p>
       </div>
 
-      <div class="service-card fade-in">
+      <div class="service-card" style="--card-index: 5;">
         <div class="service-icon">📈</div>
         <h3>Analítica</h3>
         <p>Reportes mensuales que explican el porqué detrás de cada número.</p>
       </div>
 
-      <div class="service-card fade-in">
+      <div class="service-card" style="--card-index: 6;">
         <div class="service-icon">✨</div>
         <h3>Identidad de Marca</h3>
         <p>Consistencia visual y tonal que haga tu marca inconfundible.</p>
@@ -798,15 +765,15 @@
   </div>
 </section>
 
-<!-- STATS -->
-<section id="resultados">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div class="stats-section">
-      <div class="section-header">
-        <div class="section-tag">Resultados Reales</div>
-        <h2 class="section-title">Números que se sienten en redes</h2>
-      </div>
+<!-- STATS SECTION -->
+<section class="full-section dark" id="resultados">
+  <div class="section-content">
+    <div class="section-header">
+      <div class="section-tag">Resultados Reales</div>
+      <h2 class="section-title">Números que se sienten en redes</h2>
+    </div>
 
+    <div class="stats-container">
       <div class="stats-grid">
         <div class="stat-item">
           <h3>3.2x</h3>
@@ -825,10 +792,10 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section>
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <div class="cta-section">
+<!-- CTA SECTION -->
+<section class="full-section dark">
+  <div class="section-content">
+    <div class="cta-container">
       <h2>¿Listo para subir de altura?</h2>
       <a href="https://wa.me/56927078086" target="_blank" class="btn btn-primary">Comenzar ahora</a>
     </div>
@@ -875,58 +842,43 @@
     }, 300);
   }
 
-  // PARALLAX EFFECT
-  function handleParallax() {
-    const scrolled = window.pageYOffset;
-    const mountainBack = document.getElementById('mountainBack');
-    const mountainMid = document.getElementById('mountainMid');
-    const mountainFront = document.getElementById('mountainFront');
+  // SMOOTH SCROLL SECTIONS
+  function observeSections() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
 
-    mountainBack.style.transform = `translateY(${scrolled * 0.3}px)`;
-    mountainMid.style.transform = `translateY(${scrolled * 0.5}px)`;
-    mountainFront.style.transform = `translateY(${scrolled * 0.7}px)`;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'slideInUp 1s ease-out forwards';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.full-section').forEach(el => observer.observe(el));
   }
-
-  // CAROUSEL FUNCTIONALITY
-  function scrollCarousel(direction) {
-    const carousel = document.getElementById('videoCarousel');
-    const scrollAmount = 350;
-    carousel.scrollBy({
-      left: direction * scrollAmount,
-      behavior: 'smooth'
-    });
-  }
-
-  // FADE IN ANIMATION ON SCROLL
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationDelay = (index * 0.1) + 's';
-        entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // KEYBOARD NAVIGATION
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') scrollCarousel(-1);
-    if (e.key === 'ArrowRight') scrollCarousel(1);
-  });
-
-  // PARALLAX ON SCROLL
-  window.addEventListener('scroll', handleParallax);
 
   // INIT
   createStars();
   createSnow();
+  observeSections();
+
+  // SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
 </script>
 
 </body>
